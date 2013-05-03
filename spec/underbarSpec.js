@@ -24,7 +24,7 @@ describe("last", function() {
 
 });
 
-/*
+
 
 describe("first", function() {
   it("should be able to pull out the first element of an array", function() {
@@ -431,7 +431,7 @@ describe("shuffle", function() {
     expect(shuffled.sort()).to.eql(numbers);
   });
 });
-
+/*
 describe("sortBy", function() {
   it("should sort by age", function() {
     var people = [{name : 'curly', age : 50}, {name : 'moe', age : 30}];
