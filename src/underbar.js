@@ -178,11 +178,11 @@ var _ = {};
     },bool);*/
     //var args = obj.slice.call(arguments);
     if(obj.length === 0){return true;}
-    var bool;
+    var bool = false ;
     _.each(obj,function(value){
       if(iterator(value)){return bool = true;}
 
-      else bool = false;
+      //else bool;
     });
     return bool;
   };
@@ -312,16 +312,10 @@ var _ = {};
 
   // Shuffle an array.
   _.shuffle = function(obj) {
-   var randomNo;
-   var item = 0;
-   var array = [];
-   _.each(obj,function(value){
-    randomNo = Math.floor(Math.random()* obj[obj.length-1]);
-    array[item-1]= array[randomNo];
-    array[randomNo] = value;
 
-   });
-   return array;
+   var o = Array.prototype.slice.call(obj);
+   for (var j,x, i= o.length;i; j = parseInt(Math.random()*i), x = o[--i],o[i]= o[j],o[j]=x);
+    return o;
 };
   /* (End of pre-course curriculum) */
 
