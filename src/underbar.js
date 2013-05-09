@@ -26,11 +26,8 @@ var _ = {};
 
   // Call iterator(value, key, collection) for each element of collection
   _.each = function(obj, iterator) { 
-    if (Array.isArray(obj)){
       for (var i in obj){  iterator(obj[i],i,obj);}
-    }
-    
-  };
+    };
 
   /*
    * TIP: Here's an example of a function that needs to iterate, which we've
@@ -170,28 +167,21 @@ var _ = {};
 
   // Determine whether all of the elements match a truth test.
   _.every = function(obj, iterator) {
-    // TIP: use reduce on this one!
-    /*(if(obj.length === 0){return true;}
-    var bool = false;
-    return _.reduce(obj, function(value){
-      if(iterator(value)){ return bool = true;};
-    },bool);*/
-    //var args = obj.slice.call(arguments);
-    if(obj.length === 0){return true;}
-    var bool = false ;
-    _.each(obj,function(value){
-      if(iterator(value)){return bool = true;}
-
-      //else bool;
-    });
-    return bool;
+   
+  var result = [];
+  _.each(obj, function(value){
+    if(iterator(value)){result.push(true);}
+    else {
+      result.push(false);
+    }
+  });
+    return !(_.contains(result,false));
   };
-
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.any = function(obj, iterator) {
     // TIP: re-use every() here
-    if(obj == null){return false;}
+    /*if(obj == null){return false;}
     var bool = false;
      _.each(obj,function(value){
       if(iterator!=null){
@@ -204,10 +194,24 @@ var _ = {};
     }
     } );
     return bool;
+  };*/
+  var result = [];
+    _.each(obj, function(value) {
+      if (iterator === undefined) {
+        if (value) {
+          result.push(true);
+        } else {
+                 result.push(false);
+       }
+      } else if(iterator(value)) {
+        result.push(true);
+      } else {
+        result.push(false);
+      }
+    });
+ 
+    return _.contains(result, true);
   };
-  
-
-
   /*
    * These are a couple of helpers for merging objects
    */
