@@ -316,10 +316,16 @@ var _ = {};
 
   // Shuffle an array.
   _.shuffle = function(obj) {
-
-   var o = Array.prototype.slice.call(obj);
-   for (var j,x, i= o.length;i; j = parseInt(Math.random()*i), x = o[--i],o[i]= o[j],o[j]=x);
-    return o;
+    var shuffled = [];
+    var hold = '';
+    var max = obj.length-1;
+    _.each(obj, function(item,index){
+      var random = Math.floor(Math.random()* max);
+      hold = obj[random];
+      obj[random] = obj[index];
+      obj[index] = hold;
+    });
+    return obj;
 };
   /* (End of pre-course curriculum) */
 
